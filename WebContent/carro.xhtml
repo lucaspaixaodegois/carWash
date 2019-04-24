@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+
+	<title>Cadastro de Carro</title>
+
+</h:head>
+<h:body>
+
+	<center>
+		<h1>Cadastro de Carro</h1>
+
+		<h:messages style="color:red" />
+		<h:form>
+			<h:panelGrid columns="2">
+
+				<h:outputLabel value="Placa: " />
+				<h:inputText value="#{carroController.carro.placa}" />
+
+				<h:outputLabel value="Modelo: " />
+				<h:inputText value="#{carroController.carro.modelo}" />
+
+
+				<h:outputLabel value="Marca: " />
+				<h:selectOneMenu value="#{carroController.carro.marca}">
+					<f:selectItem itemLabel="Selecione ..." />
+					<f:selectItems value="#{carroController.listaMarca}" var="marca"
+						itemLabel="#{marca.label}" itemValue="#{marca}" />
+				</h:selectOneMenu>
+
+
+				<h:outputLabel value="Categoria: " />
+				<h:selectOneMenu value="#{carroController.carro.categoria}">
+					<f:selectItem itemLabel="Selecione ..." />
+					<f:selectItems value="#{carroController.listaCategoria}"
+						var="categoria" itemLabel="#{categoria.label}"
+						itemValue="#{categoria}" />
+				</h:selectOneMenu>
+
+
+
+			</h:panelGrid>
+
+			<h:panelGrid columns="4">
+				<h:commandButton value="Incluir"
+					disabled="#{carroController.carro.id != null}"
+					actionListener="#{carroController.incluir}" />
+
+				<h:commandButton value="Limpar"
+					actionListener="#{carroController.limpar}" />
+
+			</h:panelGrid>
+		</h:form>
+
+	</center>
+</h:body>
+</html>
